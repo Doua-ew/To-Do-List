@@ -36,9 +36,10 @@ public class Task_Manager {
         tasks = new LinkedList<>();
     }
 
-    public void addTask(String title, String description) {
-        Task newTask = new Task(title, description);
+    public void addTask(String title, String description, boolean isCompleted) {
+        Task newTask = new Task(title, description, isCompleted);
         tasks.add(newTask);
+       newTask.setCompleted(isCompleted);   //mmkkm
         System.out.println("The task has been added successfully!");
     }
 
@@ -58,10 +59,30 @@ public class Task_Manager {
             System.out.println("Tasks #" + index);
             System.out.println("Title: " + task.getTitle());
             System.out.println("Description: " + task.getDescription());
+            System.out.println("isCompleted: " + task.getCompleted());
             System.out.println("--------------------------");
             index++;
         }
     }
+
+
+    public void markTaskAsCompleted(int tasknum){
+        if (tasknum <= 0 || tasknum > tasks.size()) {
+            System.out.println("The task number is incorrect.");
+            return;
+        }
+
+        Task task = tasks.get(tasknum - 1);
+
+        if (task.getCompleted()==true) {
+            System.out.println("This task is already marked as completed.");
+        } else {
+            task.setCompleted(true);
+            System.out.println("Task marked as completed: " + task.getTitle());
+        }
+
+    }
+
 
     public void deleteTask(int index) {
         if (index <= 0 || index > tasks.size()) {

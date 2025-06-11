@@ -5,16 +5,16 @@ public class Task {
 
     private String title;
     private String description;
+    private boolean isCompleted;
 
 
-    // private int priority;
-    // private boolean isCompleted;
 
     //  (Constructor)
-    public Task(String title, String description) {//هاي عشان البديكا للعنوان لما يدخلها المستخدم
+    public Task(String title, String description,boolean isCompleted) {//هاي عشان البديكا للعنوان لما يدخلها المستخدم
         //    this.title = set.title;
         this.title = checktitle(title) ;
         this.description = description;
+        this.isCompleted= isCompleted;
     }
     //rrr
 
@@ -38,22 +38,52 @@ public class Task {
 }
 
 
-        public void setTitle(String title) {
+    public void setTitle(String title) {
                 this.title = checktitle(title) ;
 
         }
 
-        public String getDescription() {
+
+    public String getDescription() {
             return description;
         }
 
-        public void setDescription(String description) {
+
+    public void setDescription(String description) {
             this.description = description;
         }
 
 
+    public boolean getCompleted() {
+        return isCompleted;
+    }
 
-        public String toString() {
-            return "title : " + title + "\ndescription : " + description;
-        }
+
+    public String CompletionStatus(boolean completed){
+        String status;
+        if (completed==true)
+            status="yes";
+
+        else
+            status="No";
+
+
+       return status;
+    }
+
+
+
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
+
+
+    public String toString() {
+        return "title : " + title + "\ndescription : " + description
+                + "\nCompleted "+CompletionStatus(getCompleted());
+    }
+
+
+
+
     }

@@ -1,5 +1,8 @@
+import java.util.Scanner;
 //===================333333333333333
 public class Task {
+
+    Scanner sc = new Scanner(System.in);
 
         private String title;
         private String description;
@@ -9,7 +12,7 @@ public class Task {
         // private boolean isCompleted;
 
         //  (Constructor)
-        public Task(String title, String description) {
+        public Task(String title, String description) {//هاي عشان البديكا للعنوان لما يدخلها المستخدم
         //    this.title = set.title;
             this.title = setTitle(title);
             this.description = description;
@@ -21,7 +24,32 @@ public class Task {
         }
 
 //true false
+    public void checktitle(String title){
+            boolean found_null = false;
+            if (title==null){
+                found_null= true;
+                while (found_null==true){
+
+                    System.out.println("The Title can not be empty");
+                    System.out.print("Enter the task title : ");
+                    title = sc.nextLine();
+                    checktitle(title);//عشان يرجع يعمل بديكا للعنوان
+                }
+
+
+
+   }else {
+     setTitle(title) ;
+
+
+            }
+            }
+
+    }
+
+
         public String setTitle(String title) {
+            checktitle(title)  ;
             this.title = title;
             return title;
 

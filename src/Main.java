@@ -12,7 +12,7 @@ public class Main {
             System.out.print("CHOOSE: ");
             int choice = sc.nextInt();
             sc.nextLine(); // لتنظيف السطر
-
+//ijijoio
 //====================================================
             switch (choice) {
                 case 1:

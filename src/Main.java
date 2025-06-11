@@ -5,15 +5,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Task_Manager manager = new Task_Manager();
         while (true) {//تكون بلوب لانهائية عبين ما يسجل المستخدم
+            System.out.println("------THE LIST-----");
             System.out.println("1. ADD TASK");
             System.out.println("2. DISPLAY TASK");
             System.out.println("3. DELETE TASK");
             System.out.println("0. EXIT");
             System.out.print("CHOOSE: ");
-            int choice = sc.nextInt();
-            sc.nextLine(); // لتنظيف السطر
+            String input = sc.nextLine();
+            int choice  = Task_Manager.check_input(input);
 //ijijoio
 //====================================================
+
+
+
             switch (choice) {
                 case 1:
                     System.out.print("ENTER THE TITLE OF THE TASK: ");
@@ -34,7 +38,8 @@ public class Main {
                     System.out.println("The program has been ended");
                     return;
                 default:
-                    System.out.println(" Invalid option.");
+                    System.out.println("!!!Invalid option!!!");
+                    System.out.println("----Choose a number from the list---");
             }
 
         }

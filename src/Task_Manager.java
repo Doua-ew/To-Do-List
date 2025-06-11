@@ -1,6 +1,35 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 public class Task_Manager {
     private LinkedList<Task> tasks;
+    Scanner sc = new Scanner(System.in);
+
+
+    public static int  check_input(String input) {
+        boolean isNumber = true;
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) < '0' || input.charAt(i) > '9') {
+                isNumber = false;
+            }
+        }
+
+        if (isNumber == false || input.length() == 0) {
+            System.out.println("Invalid input!!!!. Please enter a valid number.");
+            System.out.print("Enter the task number: ");
+
+            Scanner sc = new Scanner(System.in);
+            input = sc.nextLine(); //
+
+            return check_input(input); // רקורסיה
+        }
+
+        return Integer.parseInt(input);
+
+    }
+
+
+
 
 
     public Task_Manager() {

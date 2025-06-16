@@ -13,7 +13,7 @@ public class Main {
             System.out.println("0. EXIT");
             System.out.print("CHOOSE: ");
             String input = sc.nextLine();
-            int choice  = Task_Manager.check_input(input);
+            int choice  = Task_Manager.check_input_string_int(input);
 
 //====================================================
 
@@ -31,11 +31,11 @@ public class Main {
                     System.out.println("2. No");
                     System.out.print("Choose 1 or 2: ");
                     String choice1_2 = sc.nextLine();
+                    int choice_1_final  = Task_Manager.check_input_string_int(choice1_2);
 
-                    boolean isCompleted = false;
-                    if (choice1_2.equals("1")) {
-                        isCompleted = true;
-                    }
+
+                    boolean isCompleted = Task_Manager.check_input_boolean(choice_1_final);
+
 
                     manager.addTask(title, description,isCompleted);
                     break;
@@ -47,7 +47,7 @@ public class Main {
                     manager.displayTasks(); // نعرض المهام أولًا
                     System.out.print("Enter the number of the task to mark as completed: ");
                     String inputnum = sc.nextLine();
-                    int tasknum = Task_Manager.check_input(inputnum);
+                    int tasknum = Task_Manager.check_input_string_int(inputnum);
                     manager.markTaskAsCompleted(tasknum);
 
 
@@ -56,7 +56,7 @@ public class Main {
                     System.out.print("ENTER THE TASK’S NUMBER TO DELETE: ");
                     int index = sc.nextInt();
                     String input_delete = sc.nextLine();
-                    int task_delete = Task_Manager.check_input(input_delete);
+                    int task_delete = Task_Manager.check_input_string_int(input_delete);
                     manager.deleteTask(task_delete);
                     break;
 

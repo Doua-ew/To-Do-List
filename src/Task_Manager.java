@@ -5,7 +5,7 @@ public class Task_Manager {
     Scanner sc = new Scanner(System.in);
 
 
-    public static int  check_input(String input) {
+    public static int  check_input_string_int(String input) {
         boolean isNumber = true;
 
         for (int i = 0; i < input.length(); i++) {
@@ -21,12 +21,44 @@ public class Task_Manager {
             Scanner sc = new Scanner(System.in);
             input = sc.nextLine(); //
 
-            return check_input(input); // רקורסיה
+            return check_input_string_int(input); // רקורסיה
         }
 
-        return Integer.parseInt(input);
+        return Integer.parseInt(input);// خاصية من جافا بتحول النص الى رقم
 
     }
+
+
+    public static boolean check_input_boolean(int input){
+
+        boolean isCompleted = false;
+        switch (input) {
+
+            case 1 :
+                isCompleted=true;
+                break;
+
+            case 2 :
+                isCompleted=false;
+                break;
+
+
+            default:
+                System.out.println("Invalid input!!!!. Please enter a valid number.");
+                System.out.print("Enter number ( 1:completed or 2: not completed ): ");
+                Scanner sc = new Scanner(System.in);
+               String input_String = sc.nextLine();
+                input= check_input_string_int(input_String);
+                return check_input_boolean(input);
+
+
+
+        }
+
+
+
+     return isCompleted;
+        }
 
 
 

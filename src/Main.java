@@ -23,6 +23,7 @@ public class Main {
                 case 1:
                     System.out.print("ENTER THE TITLE OF THE TASK: ");
                     String title = sc.nextLine();
+                    //7
 
                     System.out.print("ENTER THE DESCRIPTION OF THE  TASK: ");
                     String description = sc.nextLine();

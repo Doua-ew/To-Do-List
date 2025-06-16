@@ -14,10 +14,22 @@ public class Main {
     public static void main(String[]args) {
         Scanner sc = new Scanner(System.in);
         Task_Manager manager = new Task_Manager();
-        System.out.print("Enter your username: ");
-        String username = sc.nextLine();
-        manager.setTasks(TaskStorage.loadTasksFromFile(username));
+//        System.out.print("Enter your username: ");
+//        String username = sc.nextLine();
+//        manager.setTasks(TaskStorage.loadTasksFromFile(username));
+        String username= null;
+        while (true) {
+            System.out.println("========== Welcome to the To-Do App ==========");
+            System.out.println("1. Sign up (Create new account)");
+            System.out.println("2. Login (Enter existing account)");
+            System.out.print("Choose 1 or 2: ");
+            String choose_sing_login = sc.nextLine();
+            int choose_login_sing= Cheak_sc.check_input_string_int(choose_sing_login);
+             username = Cheak_sc.check_then_do_singUP_login(choose_login_sing);
+            if (username != null) break;
 
+        }
+        manager.setTasks(TaskStorage.loadTasksFromFile(username));
 
         while (true) {//تكون بلوب لانهائية عبين ما يسجل المستخدم
             System.out.println("------THE LIST-----");

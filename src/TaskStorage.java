@@ -2,49 +2,54 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.LinkedList;
+import java.util.*;
 
 public class TaskStorage {
+    private static final String FILE_NAME = "users_tasks.json";
     private static final Gson gson = new Gson();
 
-    public static void saveTasksToFile(String username, LinkedList<Task> tasks) {
-        try (FileWriter writer = new FileWriter(username + ".json")) {
-            gson.toJson(tasks, writer);
-            System.out.println(" Tasks saved to " + username + " .json");
-        } catch (IOException e) {
-            System.out.println("Failed to save: " + e.getMessage());
-        }
+    public static Map<String, LinkedList<Task>> getAllUsers() {
+        return loadAllUsers(); // ترجع كل المستخدمين الموجودين في ملف users_tasks.json
     }
+
 
     public static LinkedList<Task> loadTasksFromFile(String username) {
-        File file = new File(username + ".json");
+        Map<String, LinkedList<Task>> allUsers = loadAllUsers();
 
-        // ✅ 1. إذا الملف مش موجود أو فاضي → رجّع قائمة جديدة
-        if (!file.exists() || file.length() == 0) {
-            System.out.println("⚠ No existing file or file is empty. Creating new task list.");
+        if (!allUsers.containsKey(username)) {
             return new LinkedList<>();
         }
 
-        // ✅ 2. إذا الملف موجود وفيه محتوى → نقرأه
+        return allUsers.get(username);
+    }
+
+    public static void saveTasksToFile(String username, LinkedList<Task> userTasks) {
+        Map<String, LinkedList<Task>> allUsers = loadAllUsers();
+        allUsers.put(username, userTasks);
+        saveAllUsers(allUsers);
+        System.out.println("✔ Tasks saved for user: " + username);
+    }
+
+    private static Map<String, LinkedList<Task>> loadAllUsers() {
+        File file = new File(FILE_NAME);
+        if (!file.exists() || file.length() == 0) {
+            return new HashMap<>();
+        }
+
         try (FileReader reader = new FileReader(file)) {
-            Type type = new TypeToken<LinkedList<Task>>(){}.getType();
+            Type type = new TypeToken<Map<String, LinkedList<Task>>>() {}.getType();
             return gson.fromJson(reader, type);
         } catch (Exception e) {
-            System.out.println("❌ Failed to load tasks: " + e.getMessage());
-            return new LinkedList<>();
+            System.out.println(" Error reading from file: " + e.getMessage());
+            return new HashMap<>();
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    private static void saveAllUsers(Map<String, LinkedList<Task>> allUsers) {
+        try (FileWriter writer = new FileWriter(FILE_NAME)) {
+            gson.toJson(allUsers, writer);
+        } catch (IOException e) {
+            System.out.println(" Failed to save file: " + e.getMessage());
+        }
+    }
 }

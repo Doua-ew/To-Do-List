@@ -14,6 +14,9 @@ public class Main {
     public static void main(String[]args) {
         Scanner sc = new Scanner(System.in);
         Task_Manager manager = new Task_Manager();
+        System.out.print("Enter your username: ");
+        String username = sc.nextLine();
+        manager.setTasks(TaskStorage.loadTasksFromFile(username));
 
 
         while (true) {//تكون بلوب لانهائية عبين ما يسجل المستخدم
@@ -26,7 +29,7 @@ public class Main {
             System.out.print("CHOOSE: ");
             // احط هاي الملاحظة في المتسكقت
             String input = sc.nextLine();
-            int choice  = Task_Manager.check_input_string_int(input);
+            int choice  = Cheak_sc.check_input_string_int(input);
 
 //====================================================
 
@@ -34,6 +37,7 @@ public class Main {
                 case 1:
                     System.out.print("ENTER THE TITLE OF THE TASK: ");
                     String title = sc.nextLine();
+                    title=Cheak_sc.checktitle(title);
 
 
                     System.out.print("ENTER THE DESCRIPTION OF THE  TASK: ");
@@ -44,11 +48,14 @@ public class Main {
                     System.out.println("2. No");
                     System.out.print("Choose 1 or 2: ");
                     String choice1_2 = sc.nextLine();
-                    int choice_1_final  = Task_Manager.check_input_string_int(choice1_2);
-                    boolean isCompleted = Task_Manager.check_input_boolean(choice_1_final);
+                    int choice_1_final  = Cheak_sc.check_input_string_int(choice1_2);
+                    boolean isCompleted = Cheak_sc.check_input_boolean(choice_1_final);
 
 
                     manager.addTask(title, description,isCompleted);
+                    TaskStorage.saveTasksToFile(username, manager.getTasks());
+
+
                     break;
                 case 2:
                     manager.displayTasks();
@@ -58,21 +65,28 @@ public class Main {
                     manager.displayTasks(); // نعرض المهام أولًا
                     System.out.print("Enter the number of the task to mark as completed: ");
                     String inputnum = sc.nextLine();
-                    int tasknum = Task_Manager.check_input_string_int(inputnum);
+                    int tasknum = Cheak_sc.check_input_string_int(inputnum);
                     manager.markTaskAsCompleted(tasknum);
+                    TaskStorage.saveTasksToFile(username, manager.getTasks());
+                    break;
+
 
 
                 case 4:
                     manager.displayTasks();
                     System.out.print("ENTER THE TASK’S NUMBER TO DELETE: ");
-                    int index = sc.nextInt();
                     String input_delete = sc.nextLine();
-                    int task_delete = Task_Manager.check_input_string_int(input_delete);
+                    int task_delete = Cheak_sc.check_input_string_int(input_delete);
                     manager.deleteTask(task_delete);
+                    TaskStorage.saveTasksToFile(username, manager.getTasks());
+
                     break;
 
 
                 case 0:
+                    TaskStorage.saveTasksToFile(username, manager.getTasks());
+                    System.out.println("Tasks saved successfully. Goodbye");
+
                     System.out.println("The program has been ended");
                     return;
 

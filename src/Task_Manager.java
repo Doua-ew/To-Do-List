@@ -1,74 +1,84 @@
 import java.util.LinkedList;
-import java.util.Scanner;
+//import java.util.Scanner;
 public class Task_Manager {
     private LinkedList<Task> tasks;
-    Scanner sc = new Scanner(System.in);
+//    Scanner sc = new Scanner(System.in);
 
     public Task_Manager() {
         tasks = new LinkedList<>();
     }
 
 
-    public static int  check_input_string_int(String input) {
-        boolean isNumber = true;
+    public LinkedList<Task> getTasks() {
+        return tasks;
+    }
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) < '0' || input.charAt(i) > '9') {
-                isNumber = false;
-            }
-        }
-
-        if (isNumber == false || input.length() == 0) {
-            System.out.println("Invalid input!!!!. Please enter a valid number.");
-            System.out.print("Enter the task number: ");
-
-            Scanner sc = new Scanner(System.in);
-            input = sc.nextLine(); //
-
-            return check_input_string_int(input); // רקורסיה
-        }
-
-        return Integer.parseInt(input);// خاصية من جافا بتحول النص الى رقم
-
+    public void setTasks(LinkedList<Task> newTasks) {
+        this.tasks = newTasks;
     }
 
 
-    public static boolean check_input_boolean(int input){
-
-        boolean isCompleted = false;
-        switch (input) {
-
-            case 1 :
-                isCompleted=true;
-                break;
-
-            case 2 :
-                isCompleted=false;
-                break;
-
-
-            default:
-                System.out.println("Invalid input!!!!. Please enter a valid number.");
-                System.out.print("Enter number ( 1:completed or 2: not completed ): ");
-                Scanner sc = new Scanner(System.in);
-               String input_String = sc.nextLine();
-                input= check_input_string_int(input_String);
-                return check_input_boolean(input);
-
-
-
-        }
+//    public static int  check_input_string_int(String input) {
+//        boolean isNumber = true;
+//
+//        for (int i = 0; i < input.length(); i++) {
+//            if (input.charAt(i) < '0' || input.charAt(i) > '9') {
+//                isNumber = false;
+//            }
+//        }
+//
+//        if (isNumber == false || input.length() == 0) {
+//            System.out.println("Invalid input!!!!. Please enter a valid number.");
+//            System.out.print("Enter the task number: ");
+//
+//            Scanner sc = new Scanner(System.in);
+//            input = sc.nextLine(); //
+//
+//            return check_input_string_int(input); // רקורסיה
+//        }
+//
+//        return Integer.parseInt(input);// خاصية من جافا بتحول النص الى رقم
+//
+//    }
 
 
-
-     return isCompleted;
-        }
+//    public static boolean check_input_boolean(int input){
+//
+//        boolean isCompleted = false;
+//        switch (input) {
+//
+//            case 1 :
+//                isCompleted=true;
+//                break;
+//
+//            case 2 :
+//                isCompleted=false;
+//                break;
+//
+//
+//            default:
+//                System.out.println("Invalid input!!!!. Please enter a valid number.");
+//                System.out.print("Enter number ( 1:completed or 2: not completed ): ");
+//                Scanner sc = new Scanner(System.in);
+//               String input_String = sc.nextLine();
+//                input= check_input_string_int(input_String);
+//                return check_input_boolean(input);
+//
+//
+//
+//        }
+//
+//
+//
+//     return isCompleted;
+//        }
 
 
     public void addTask(String title, String description, boolean isCompleted) {
         Task newTask = new Task(title, description, isCompleted);
         tasks.add(newTask);
-       newTask.setCompleted(isCompleted);   //mmkkm
+        newTask.setDescription(description);
+       newTask.setCompleted(isCompleted);
         System.out.println("The task has been added successfully!");
     }
 

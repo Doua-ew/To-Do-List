@@ -10,13 +10,16 @@ public class Task {
 
 
     //  (Constructor)
-    public Task(String title, String description,boolean isCompleted) {//هاي عشان البديكا للعنوان لما يدخلها المستخدم
-        //    this.title = set.title;
+    public Task(String title, String description,boolean isCompleted) {
+        //هاي عشان البديكا للعنوان لما يدخلها المستخدم
+
         this.title = checktitle(title) ;
         this.description = description;
         this.isCompleted= isCompleted;
     }
-    //rrr
+
+
+
 
     //  Getters و Setters
     public String getTitle() {
@@ -25,8 +28,12 @@ public class Task {
 
     //true false
     public String checktitle(String title){
+
+        if (title!=null&&title.trim().length()>0)
+            return title;
+
 // trim خاصية من جافا بتحذف الفرافات في السترنق وبفحص اذا فاضية او لا عشان جافا ما بتعتبر "" فاضية
-            while (title == null || title.trim().isEmpty()){
+        while (title == null || title.trim().isEmpty()){
 
                 System.out.println("The Title can not be empty!!");
                 System.out.print("Enter the task title : ");
@@ -36,8 +43,9 @@ public class Task {
         }
         return checktitle(title);
 
+
 }
-//8
+
 
 
     public void setTitle(String title) {

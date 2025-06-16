@@ -1,9 +1,21 @@
 import java.util.Scanner;
+import com.google.gson.Gson;
+// كل مستخدم الو لينكيد ليست خاصة به
+//تو دو ليست اكثر من وحدة للمستخدم ننضيف تواريخ
+// تو دو ليست لكل يوم تقريبا في الاسبوع
+// ابديت لليست
+// هيستوري لليست
+//ملف جيسون
+// هعارة في البيدكاة في المتسقت ابديكوت والتحديات
 
 public class Main {
+
+
     public static void main(String[]args) {
         Scanner sc = new Scanner(System.in);
         Task_Manager manager = new Task_Manager();
+
+
         while (true) {//تكون بلوب لانهائية عبين ما يسجل المستخدم
             System.out.println("------THE LIST-----");
             System.out.println("1. ADD TASK");
@@ -12,18 +24,17 @@ public class Main {
             System.out.println("4. DELETE TASK");
             System.out.println("0. EXIT");
             System.out.print("CHOOSE: ");
+            // احط هاي الملاحظة في المتسكقت
             String input = sc.nextLine();
             int choice  = Task_Manager.check_input_string_int(input);
 
 //====================================================
 
-
-
             switch (choice) {
                 case 1:
                     System.out.print("ENTER THE TITLE OF THE TASK: ");
                     String title = sc.nextLine();
-                    //7
+
 
                     System.out.print("ENTER THE DESCRIPTION OF THE  TASK: ");
                     String description = sc.nextLine();

@@ -7,8 +7,6 @@ public class Task_Manager {
     public Task_Manager() {
         tasks = new LinkedList<>();
     }
-    //2
-
 
 
     public static int  check_input_string_int(String input) {

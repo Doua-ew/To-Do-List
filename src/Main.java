@@ -23,6 +23,7 @@ public class Main {
                 case 1:
                     System.out.print("ENTER THE TITLE OF THE TASK: ");
                     String title = sc.nextLine();
+
                     System.out.print("ENTER THE DESCRIPTION OF THE  TASK: ");
                     String description = sc.nextLine();
 
@@ -32,8 +33,6 @@ public class Main {
                     System.out.print("Choose 1 or 2: ");
                     String choice1_2 = sc.nextLine();
                     int choice_1_final  = Task_Manager.check_input_string_int(choice1_2);
-
-
                     boolean isCompleted = Task_Manager.check_input_boolean(choice_1_final);
 
 

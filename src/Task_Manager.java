@@ -4,6 +4,11 @@ public class Task_Manager {
     private LinkedList<Task> tasks;
     Scanner sc = new Scanner(System.in);
 
+    public Task_Manager() {
+        tasks = new LinkedList<>();
+    }
+
+
 
     public static int  check_input_string_int(String input) {
         boolean isNumber = true;
@@ -60,13 +65,6 @@ public class Task_Manager {
      return isCompleted;
         }
 
-
-
-
-
-    public Task_Manager() {
-        tasks = new LinkedList<>();
-    }
 
     public void addTask(String title, String description, boolean isCompleted) {
         Task newTask = new Task(title, description, isCompleted);

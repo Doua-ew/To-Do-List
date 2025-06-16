@@ -25,15 +25,16 @@ public class Task {
 
     //true false
     public String checktitle(String title){
-
+// trim خاصية من جافا بتحذف الفرافات في السترنق وبفحص اذا فاضية او لا عشان جافا ما بتعتبر "" فاضية
             while (title == null || title.trim().isEmpty()){
 
                 System.out.println("The Title can not be empty!!");
                 System.out.print("Enter the task title : ");
                 title = sc.nextLine();
 
+
         }
-        return title;
+        return checktitle(title);
 
 }
 

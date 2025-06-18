@@ -23,9 +23,9 @@ public class Main {
             System.out.println("1. Sign up (Create new account)");
             System.out.println("2. Login (Enter existing account)");
             System.out.print("Choose 1 or 2: ");
-            String choose_sing_login = sc.nextLine();
-            int choose_login_sing= Cheak_sc.check_input_string_int(choose_sing_login);
-             username = Cheak_sc.check_then_do_singUP_login(choose_login_sing);
+            String choose_sign_login_string = sc.nextLine();
+            int choose_login_sign_int= Cheak_sc.check_input_string_int(choose_sign_login_string);
+             username = Cheak_sc.check_then_do_singUP_login(choose_login_sign_int);
             if (username != null) break;
 
         }

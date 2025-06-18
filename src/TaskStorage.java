@@ -23,12 +23,14 @@ public class TaskStorage {
         return allUsers.get(username);
     }
 
+
     public static void saveTasksToFile(String username, LinkedList<Task> userTasks) {
         Map<String, LinkedList<Task>> allUsers = loadAllUsers();
         allUsers.put(username, userTasks);
         saveAllUsers(allUsers);
         System.out.println("✔ Tasks saved for user: " + username);
     }
+
 
     private static Map<String, LinkedList<Task>> loadAllUsers() {
         File file = new File(FILE_NAME);
@@ -44,6 +46,7 @@ public class TaskStorage {
             return new HashMap<>();
         }
     }
+
 
     private static void saveAllUsers(Map<String, LinkedList<Task>> allUsers) {
         try (FileWriter writer = new FileWriter(FILE_NAME)) {

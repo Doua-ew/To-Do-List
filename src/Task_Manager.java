@@ -13,6 +13,9 @@ public class Task_Manager {
         return tasks;
     }
 
+
+
+
     public void setTasks(LinkedList<Task> newTasks) {
         this.tasks = newTasks;
     }
@@ -78,9 +81,11 @@ public class Task_Manager {
         Task newTask = new Task(title, description, isCompleted);
         tasks.add(newTask);
         newTask.setDescription(description);
-       newTask.setCompleted(isCompleted);
-        System.out.println("The task has been added successfully!");
+        newTask.setCompleted(isCompleted);
+        System.out.println("The task has been added successfully! ✅");
     }
+
+
 
     public void displayTasks() {
         if (tasks.isEmpty()) {
@@ -102,6 +107,7 @@ public class Task_Manager {
             System.out.println("--------------------------");
             index++;
         }
+        System.out.println("===========================");
     }
 
 
@@ -114,10 +120,10 @@ public class Task_Manager {
         Task task = tasks.get(tasknum - 1);
 
         if (task.getCompleted()==true) {
-            System.out.println("This task is already marked as completed.");
+            System.out.println("This task is already marked as completed ✅.");
         } else {
             task.setCompleted(true);
-            System.out.println("Task marked as completed: " + task.getTitle());
+            System.out.println("Task marked as completed ✅: " + task.getTitle());
         }
 
     }
@@ -125,11 +131,22 @@ public class Task_Manager {
 
     public void deleteTask(int index) {
         if (index <= 0 || index > tasks.size()) {
-            System.out.println("The task number is incorrect.");
+            System.out.println(" The task number is incorrect ❌");
             return;
         }
 
         Task removedTask = tasks.remove(index - 1); // لأن الفهرس يبدأ من 0
-        System.out.println("Task deleted: " + removedTask.getTitle());
+        System.out.println("The Task " + removedTask.getTitle() + "Has been deleted ✅");
+    }
+
+    public void updateTask(int index, String newTitle, String newDescription, boolean newCompletedStatus) {
+
+
+        Task task = tasks.get(index - 1);
+        task.setTitle(newTitle);
+        task.setDescription(newDescription);
+        task.setCompleted(newCompletedStatus);
+
+        System.out.println("✅ Task updated successfully.");
     }
 }

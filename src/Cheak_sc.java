@@ -17,8 +17,8 @@ public class Cheak_sc {
         }
 
         if (isNumber == false || input.length() == 0) {
-            System.out.println("Invalid input!!!!. Please enter a valid number.");
-            System.out.print("Enter the task number: ");
+            System.out.println("Invalid input ❌. Please enter a valid number.");
+            System.out.print("Enter number  : ");
 
             Scanner sc = new Scanner(System.in);
             input = sc.nextLine(); //
@@ -46,8 +46,8 @@ public class Cheak_sc {
 
 
             default:
-                System.out.println("Invalid input!!!!. Please enter a valid number.");
-                System.out.print("Enter number ( 1:completed or 2: not completed ): ");
+                System.out.println("Invalid input ❌. Please enter a valid number.");
+                System.out.print("Enter number ( 1:completed ✅ (or) 2: not completed ❌ ): ");
                 Scanner sc = new Scanner(System.in);
                 String input_String = sc.nextLine();
                 input = check_input_string_int(input_String);
@@ -72,9 +72,13 @@ public class Cheak_sc {
                 username = login();
                 break;
 
+            case  3 :
+                break;
+
+
             default:
-                System.out.println("Invalid input!!!!. Please enter a valid number.");
-                System.out.print("Enter number ( 1:completed or 2: not completed ): ");
+                System.out.println("Invalid input ❌. Please enter a valid number.");
+                System.out.print("Choose : | 1.Sign up | 2.login | 3.Exit |  ");
                 Scanner sc = new Scanner(System.in);
                 String input_String = sc.nextLine();
                 input = check_input_string_int(input_String);
@@ -90,19 +94,37 @@ public class Cheak_sc {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n===== Sign Up =====");
         String username;
+
+        boolean countinue= continue_or_back();
+        if (countinue==false)
+            return null;
+
         while (true) {
             System.out.print("Enter a username: ");
-            username = sc.nextLine();
+            username = sc.nextLine().trim();
             username = checktitle(username);
 
-            // Check if username already exists in users_tasks.json
-            Map<String, LinkedList<Task>> allUsers = TaskStorage.getAllUsers();
-            if (allUsers.containsKey(username)) {
+            if (TaskStorage.userExists(username)) {
                 System.out.println("❌ Username already exists. Try a different name.");
             } else {
                 break;
             }
         }
+
+        String password;
+        while (true) {
+            System.out.print("Enter a password: ");
+            password = sc.nextLine().trim();
+
+            if (password.isEmpty()) {
+                System.out.println("❌ Password cannot be empty. Please try again.");
+            } else {
+                break;
+            }
+        }
+        TaskStorage.createUser(username, password);
+
+
         System.out.println("✅ Account created successfully!");
         return username;
 
@@ -111,24 +133,59 @@ public class Cheak_sc {
 
     public static String login() {
         Scanner sc = new Scanner(System.in);
-
         System.out.println("\n===== Login =====");
+
+        boolean countinue = continue_or_back();
+        if (!countinue) return null;
+
         String username;
+        String password;
+
         while (true) {
             System.out.print("Enter your username: ");
-            username = sc.nextLine();
+            username = sc.nextLine().trim();
 
-            // Check if username exists in users_tasks.json
-            Map<String, LinkedList<Task>> allUsers = TaskStorage.getAllUsers();
-            if (allUsers.containsKey(username)) {
-                System.out.println(" Login successful!\n");
+            System.out.print("Enter your password: ");
+            password = sc.nextLine().trim();
+
+            if (TaskStorage.validateUser(username, password)) {
+                System.out.println("✅ Login successful!\n");
                 return username;
             } else {
-                System.out.println(" Username not found!!! Try again.");
+                System.out.println("❌ Incorrect username or password. Try again.");
             }
         }
     }
 
+
+    public static boolean continue_or_back (){
+        boolean countinue =false;
+        Scanner sc = new Scanner(System.in);
+
+
+
+        System.out.println(" 1. Unter the user name ");
+        System.out.println(" 2. Back <------ ");
+        System.out.println("    Unter the number of your Choice : ");
+        String choice= sc.nextLine();
+        int choice_1  = Cheak_sc.check_input_string_int(choice);
+
+        if (choice_1==1){
+           return true ;
+        }
+
+         else if (choice_1==2){
+             return false ;
+        }
+
+         else {
+             System.out.println("Please Choose 1 or 2");
+             continue_or_back();
+
+        }
+         return countinue ;
+
+    }
 
 
     public static String checktitle(String title){
@@ -139,7 +196,7 @@ public class Cheak_sc {
 // trim خاصية من جافا بتحذف الفرافات في السترنق وبفحص اذا فاضية او لا عشان جافا ما بتعتبر "" فاضية
         while (title == null || title.trim().isEmpty()){
 
-            System.out.println("The Title can not be empty!!");
+            System.out.println("The Title can not be empty!!❌");
             System.out.print("Enter the task title : ");
             title = sc.nextLine();
 

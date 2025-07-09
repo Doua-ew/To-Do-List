@@ -3,6 +3,13 @@ import java.util.LinkedList;
 public class Task_Manager {
     private LinkedList<Task> tasks;
 //    Scanner sc = new Scanner(System.in);
+      private String username;
+
+    public Task_Manager(String username) {
+        this.username = username;
+        this.tasks = TaskStorage.loadTasksFromFile(username);
+    }
+
 
     public Task_Manager() {
         tasks = new LinkedList<>();
@@ -12,8 +19,6 @@ public class Task_Manager {
     public LinkedList<Task> getTasks() {
         return tasks;
     }
-
-
 
 
     public void setTasks(LinkedList<Task> newTasks) {
@@ -149,4 +154,14 @@ public class Task_Manager {
 
         System.out.println("✅ Task updated successfully.");
     }
+
+    // Launcher method for GUI (Swing)
+    public static void launch(String username) {
+        Task_Manager manager = new Task_Manager(username);
+        manager.displayTasks();
+    }
+
+
+
+
 }

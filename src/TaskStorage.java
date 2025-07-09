@@ -51,12 +51,28 @@ public class TaskStorage {
         saveAllUsers(allUsers);
     }
 
-    // إنشاء مستخدم جديد وتخزين كلمة المرور فقط
     public static void createUser(String username, String password) {
+        // 1. نحمّل الملف password.json
         Map<String, String> passwords = loadPasswords();
+
+        // 2. نضيف اسم المستخدم وكلمة السر
         passwords.put(username, password);
+
+        // 3. نحفظ الملف من جديد
         savePasswords(passwords);
+
+        // 4. نحمّل users_tasks.json
+        Map<String, UserData> allUsers = loadAllUsers();
+
+        // 5. إذا المستخدم مش موجود، نضيفه مع tasks فقط
+        if (!allUsers.containsKey(username)) {
+            UserData newUser = new UserData(null);  // ما نحط password هنا
+            newUser.password = null;  // نتأكد إنها ما تروح للملف
+            allUsers.put(username, newUser); // نضيفه
+            saveAllUsers(allUsers);  // نحفظ users_tasks.json
+        }
     }
+
 
     // التحقق من صحة اسم المستخدم وكلمة السر
     public static boolean validateUser(String username, String password) {

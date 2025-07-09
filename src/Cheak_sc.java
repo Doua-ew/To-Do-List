@@ -60,36 +60,6 @@ public class Cheak_sc {
     }
 
 
-    public static String check_then_do_singUP_login(int input){
-        String username = null;
-        switch (input){
-
-            case 1 :
-                username = signUp();
-                break;
-
-            case 2 :
-                username = login();
-                break;
-
-            case  3 :
-                break;
-
-
-            default:
-                System.out.println("Invalid input ❌. Please enter a valid number.");
-                System.out.print("Choose : | 1.Sign up | 2.login | 3.Exit |  ");
-                Scanner sc = new Scanner(System.in);
-                String input_String = sc.nextLine();
-                input = check_input_string_int(input_String);
-                return check_then_do_singUP_login(input);
-
-
-        }
-        return username;
-    }
-
-
     public static String signUp( ) {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n===== Sign Up =====");

@@ -1,14 +1,7 @@
 import java.util.LinkedList;
-//import java.util.Scanner;
 public class Task_Manager {
     private LinkedList<Task> tasks;
-//    Scanner sc = new Scanner(System.in);
-      private String username;
 
-    public Task_Manager(String username) {
-        this.username = username;
-        this.tasks = TaskStorage.loadTasksFromFile(username);
-    }
 
 
     public Task_Manager() {
@@ -26,62 +19,6 @@ public class Task_Manager {
     }
 
 
-//    public static int  check_input_string_int(String input) {
-//        boolean isNumber = true;
-//
-//        for (int i = 0; i < input.length(); i++) {
-//            if (input.charAt(i) < '0' || input.charAt(i) > '9') {
-//                isNumber = false;
-//            }
-//        }
-//
-//        if (isNumber == false || input.length() == 0) {
-//            System.out.println("Invalid input!!!!. Please enter a valid number.");
-//            System.out.print("Enter the task number: ");
-//
-//            Scanner sc = new Scanner(System.in);
-//            input = sc.nextLine(); //
-//
-//            return check_input_string_int(input); // רקורסיה
-//        }
-//
-//        return Integer.parseInt(input);// خاصية من جافا بتحول النص الى رقم
-//
-//    }
-
-
-//    public static boolean check_input_boolean(int input){
-//
-//        boolean isCompleted = false;
-//        switch (input) {
-//
-//            case 1 :
-//                isCompleted=true;
-//                break;
-//
-//            case 2 :
-//                isCompleted=false;
-//                break;
-//
-//
-//            default:
-//                System.out.println("Invalid input!!!!. Please enter a valid number.");
-//                System.out.print("Enter number ( 1:completed or 2: not completed ): ");
-//                Scanner sc = new Scanner(System.in);
-//               String input_String = sc.nextLine();
-//                input= check_input_string_int(input_String);
-//                return check_input_boolean(input);
-//
-//
-//
-//        }
-//
-//
-//
-//     return isCompleted;
-//        }
-
-
     public void addTask(String title, String description, boolean isCompleted) {
         Task newTask = new Task(title, description, isCompleted);
         tasks.add(newTask);
@@ -91,14 +28,13 @@ public class Task_Manager {
     }
 
 
-
     public void displayTasks() {
         if (tasks.isEmpty()) {
             System.out.println("There are no tasks currently.");
             return;
         }
-//LOKE
-        System.out.println("To DO List:");
+
+        System.out.println(" My TO DO List 📝 ");
         int index = 1;
 
 //        for (int i = 0; i < tasks.size(); i++) {
@@ -144,6 +80,7 @@ public class Task_Manager {
         System.out.println("The Task " + removedTask.getTitle() + "Has been deleted ✅");
     }
 
+
     public void updateTask(int index, String newTitle, String newDescription, boolean newCompletedStatus) {
 
 
@@ -154,14 +91,6 @@ public class Task_Manager {
 
         System.out.println("✅ Task updated successfully.");
     }
-
-    // Launcher method for GUI (Swing)
-    public static void launch(String username) {
-        Task_Manager manager = new Task_Manager(username);
-        manager.displayTasks();
-    }
-
-
 
 
 }

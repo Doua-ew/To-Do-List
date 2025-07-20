@@ -48,10 +48,12 @@ public class Main {
 
                 case 2:
                     manager.displayTasks();
+                    Cheak_sc.waitForEnter();
                     break;
 
                 case 3:
                     manager.displayTasks();
+                    Cheak_sc.waitForEnter();
                     System.out.print("Enter task number to mark as completed (or type 'back' to return): ");
                     String inputnum = sc.nextLine();
                     if (inputnum.equalsIgnoreCase("back")) break;
@@ -65,6 +67,7 @@ public class Main {
 
                 case 4:
                     manager.displayTasks();
+                    Cheak_sc.waitForEnter();
                     System.out.print("Enter task number to delete (or type 'back' to return): ");
                     String input_delete = sc.nextLine();
                     if (input_delete.equalsIgnoreCase("back")) break;
@@ -75,6 +78,7 @@ public class Main {
 
                 case 5:
                     manager.displayTasks();
+                    Cheak_sc.waitForEnter();
                     System.out.print("Enter task number to update (or type 'back' to return): ");
                     String inputUpdate = sc.nextLine();
                     if (inputUpdate.equalsIgnoreCase("back")) break;

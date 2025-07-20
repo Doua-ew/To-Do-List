@@ -1,10 +1,7 @@
 import java.util.Scanner;
-import java.util.*;
 
 public class Cheak_sc {
 
-
-    Scanner sc = new Scanner(System.in);
 
     public static int  check_input_string_int(String input) {
 
@@ -60,104 +57,6 @@ public class Cheak_sc {
     }
 
 
-    public static String signUp( ) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\n===== Sign Up =====");
-        String username;
-
-        boolean countinue= continue_or_back();
-        if (countinue==false)
-            return null;
-
-        while (true) {
-            System.out.print("Enter a username: ");
-            username = sc.nextLine().trim();
-            username = checktitle(username);
-
-            if (TaskStorage.userExists(username)) {
-                System.out.println("❌ Username already exists. Try a different name.");
-            } else {
-                break;
-            }
-        }
-
-        String password;
-        while (true) {
-            System.out.print("Enter a password: ");
-            password = sc.nextLine().trim();
-
-            if (password.isEmpty()) {
-                System.out.println("❌ Password cannot be empty. Please try again.");
-            } else {
-                break;
-            }
-        }
-        TaskStorage.createUser(username, password);
-
-
-        System.out.println("✅ Account created successfully!");
-        return username;
-
-    }
-
-
-    public static String login() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\n===== Login =====");
-
-        boolean countinue = continue_or_back();
-        if (!countinue) return null;
-
-        String username;
-        String password;
-
-        while (true) {
-            System.out.print("Enter your username: ");
-            username = sc.nextLine().trim();
-
-            System.out.print("Enter your password: ");
-            password = sc.nextLine().trim();
-
-            if (TaskStorage.validateUser(username, password)) {
-                System.out.println("✅ Login successful!\n");
-                return username;
-            } else {
-                System.out.println("❌ Incorrect username or password. Try again.");
-            }
-        }
-    }
-
-
-    public static boolean continue_or_back (){
-        boolean countinue =false;
-        Scanner sc = new Scanner(System.in);
-
-
-
-        System.out.println(" 1. Unter the user name ");
-        System.out.println(" 2. Back <------ ");
-        System.out.println("    Unter the number of your Choice : ");
-        String choice= sc.nextLine();
-        int choice_1  = Cheak_sc.check_input_string_int(choice);
-
-        if (choice_1==1){
-           return true ;
-        }
-
-         else if (choice_1==2){
-             return false ;
-        }
-
-         else {
-             System.out.println("Please Choose 1 or 2");
-             continue_or_back();
-
-        }
-         return countinue ;
-
-    }
-
-
     public static String checktitle(String title){
         Scanner sc = new Scanner(System.in);
         if (title!=null&&title.trim().length()>0)
@@ -176,6 +75,14 @@ public class Cheak_sc {
 
 
     }
+
+
+    public static void waitForEnter() {
+        System.out.println("⏸️ Press Enter to back to menu.....");
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine(); // يوقف حتى يضغط المستخدم Enter
+    }
+
 
 
 

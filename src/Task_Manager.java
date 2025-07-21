@@ -8,12 +8,12 @@ public class Task_Manager {
         tasks = new LinkedList<>();
     }
 
-
+// هاي استخمنها لما رجعنا نحفظ المهام  في المين تاسك ستورييج
     public LinkedList<Task> getTasks() {
         return tasks;
     }
 
-
+// لما جلبنا المهام من تاسك ستوريج في الميين وبدنا نحفظهم هان
     public void setTasks(LinkedList<Task> newTasks) {
         this.tasks = newTasks;
     }

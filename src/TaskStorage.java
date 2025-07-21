@@ -10,7 +10,7 @@ public class TaskStorage {
     private static final String PASSWORD_FILE = "password.json";
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    // كلاس داخلي لتخزين كلمة المرور والمهام للمستخدم
+    // كلاس داخلي لتخزين  المهام للمستخدم
     public static class UserData {
         LinkedList<Task> tasks;
 
@@ -19,10 +19,6 @@ public class TaskStorage {
         }
     }
 
-    // تحميل جميع المستخدمين مع بياناتهم
-    public static Map<String, UserData> getAllUsers() {
-        return loadAllUsers();
-    }
 
 
     // تحميل جميع بيانات المستخدمين من ملف users_tasks.json
@@ -104,25 +100,34 @@ public class TaskStorage {
 
 
     public static void createUser(String username, String password) {
-        // 1. نحمّل الملف password.json
+        // تحميل كلمات السر من ملف password.json
         Map<String, String> passwords = loadPasswords();
 
-        // 2. نضيف اسم المستخدم وكلمة السر
+        // التحقق إذا كان اسم المستخدم موجود مسبقًا
+        if (passwords.containsKey(username)) {
+            System.out.println("User already exists! Choose a different username.");
+            return; // خروج من الدالة حتى لا يتم استبدال المستخدم الحالي
+        }
+
+        // إضافة اسم المستخدم وكلمة السر الجديدة
         passwords.put(username, password);
 
-        // 3. نحفظ الملف من جديد
+        // حفظ التغييرات في ملف كلمات السر
         savePasswords(passwords);
 
-        // 4. نحمّل users_tasks.json
+        // تحميل جميع المستخدمين من ملف users_tasks.json
         Map<String, UserData> allUsers = loadAllUsers();
 
-        // 5. إذا المستخدم مش موجود، نضيفه مع tasks فقط
+        // إذا المستخدم غير موجود، نضيفه مع قائمة مهام فارغة
         if (!allUsers.containsKey(username)) {
-            UserData newUser = new UserData();  // ما نحط password هنا
-            allUsers.put(username, newUser); // نضيفه
-            saveAllUsers(allUsers);  // نحفظ users_tasks.json
+            UserData newUser = new UserData(); // لا نضيف كلمة السر هنا
+            allUsers.put(username, newUser);
+            saveAllUsers(allUsers); // حفظ التحديثات
         }
+
+        System.out.println("User created successfully.");
     }
+
     // التحقق من صحة اسم المستخدم وكلمة السر
     public static boolean validateUser(String username, String password) {
         Map<String, String> passwords = loadPasswords();

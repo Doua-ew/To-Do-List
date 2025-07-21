@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        // فتح شاشة تسجيل الدخول/تسجيل حساب
+
+    public static void run() {
         SCREEN_TO_DO.main(null);
     }
+
 
     // هذه الدالة تُستدعى بعد تسجيل الدخول بنجاح من واجهة المستخدم
     public static void continueAppFromConsole(String username) {
